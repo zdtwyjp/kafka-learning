@@ -1,6 +1,5 @@
 package org.kafka.service;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -37,8 +36,7 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService{
         logger.info("records > " + records.count());
         StringBuffer str = new StringBuffer();
         for (ConsumerRecord<String, String> record: records) {
-            JSONObject recordObj = JSONObject.parseObject(record.value());
-            str.append(recordObj.toJSONString());
+            str.append("|").append(record.value());
         }
         logger.info("do getKafkaLogData end. ");
         return str.toString();
